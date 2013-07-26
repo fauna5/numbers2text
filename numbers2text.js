@@ -5,14 +5,18 @@ var rl = readline.createInterface({
   output: process.stdout,
   terminal: false
 });
+console.log('Enter a positive integer less than a billion and hit enter');
+rl.setPrompt('> ', 2);
+rl.prompt();
 
 rl.on('line', function (line) {
 	var input = parseInt(line,10);
 	if (isNaN(input) || input < 1 || input > oneBillion || line % 1 !== 0){
-		console.log("> Must be a positive integer less than a billion");
+		console.log('Must be a positive integer less than a billion');
 	} else {
-		console.log("> " + toText(input));	
+		console.log(toText(input));	
 	}
+	rl.prompt();
 });
 
 var ones = ['','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];	
