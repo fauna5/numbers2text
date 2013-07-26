@@ -5,15 +5,23 @@ var rl = readline.createInterface({
   output: process.stdout,
   terminal: false
 });
-console.log('Enter a positive integer less than a billion and hit enter');
+console.log('Enter a positive integer less than a billion and hit enter. Empty input exits the program.');
 rl.setPrompt('> ', 2);
 rl.prompt();
 
 rl.on('line', function (line) {
+	if(line.trim() === ""){
+		rl.close;
+		console.log('Bye');
+  		process.exit(0);
+		return;
+	} 
+
 	var input = +line;
+	
 	if (isNaN(input) || input < 1 || input > oneBillion || line % 1 !== 0){
 		console.log('Must be a positive integer less than a billion');
-	} else {
+ 	} else {
 		console.log(toText(input));	
 	}
 	rl.prompt();
