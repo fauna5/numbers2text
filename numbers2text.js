@@ -10,7 +10,7 @@ rl.setPrompt('> ', 2);
 rl.prompt();
 
 rl.on('line', function (line) {
-	var input = parseInt(line,10);
+	var input = +line;
 	if (isNaN(input) || input < 1 || input > oneBillion || line % 1 !== 0){
 		console.log('Must be a positive integer less than a billion');
 	} else {
