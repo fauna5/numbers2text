@@ -8,14 +8,15 @@ var rl = readline.createInterface({
 
 rl.on('line', function (line) {
 	var input = parseInt(line,10);
-	if (isNaN(input) || input < 1 || input > oneBillion){
+	if (isNaN(input) || input < 1 || input > oneBillion || line % 1 !== 0){
 		console.log( "Must be a positive integer less than a billion");
+	} else {
+		console.log(toText(input));	
 	}
-	console.log(toText(input));
 });
 
 var ones = ['','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];	
-var tens = ['','ten','twenty','thirty','fourty','fifty','sixty','seventy','eighty','ninety'];	
+var tens = ['','ten','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];	
 var oneMillion = 1000000;
 var oneBillion = 1000000000;
 
@@ -25,7 +26,12 @@ var toText = function(input){
 	} else if (input < 100) {
 		var amountOfTens = Math.floor(input/10);
 		input = input - amountOfTens * 10;
-		return tens[amountOfTens] + ' ' + toText(input);
+		var tensText = tens[amountOfTens];
+		var restOfText = toText(input);
+		if(restOfText.length > 0){
+			restOfText = ' ' + restOfText;
+		}
+		return tensText + restOfText;
 	} else if (input < 1000) {
 		var amountOfHundreds = Math.floor(input/100);
 		input = input - amountOfHundreds * 100;
